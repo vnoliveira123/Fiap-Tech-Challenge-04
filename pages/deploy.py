@@ -2,6 +2,7 @@ import os
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
+from datetime import date, timedelta
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 from model_lstm.model_lstm import predict, predict_dates, load_model_and_scaler, load_and_process_data, evaluate_lstm_model, create_sequences
 from util.layout import output_layout
@@ -39,14 +40,28 @@ except Exception as e:
     st.error(f"Erro ao carregar e preprocessar os dados: {e}")
     st.stop()
 
-limite_dias = 15
-data_limite = pd.Timestamp('2024-05-20') + pd.DateOffset(days=limite_dias)
+# Definir a data inicial e o limite de dias para a previsão
+DATA_INICIAL = date(2024, 5, 20)
+LIMITE_DIAS = 15
 
 st.header(":orange[Previsão do Preço do Petróleo]", divider='orange')
-st.info(f"Neste campo, você pode inserir a quantidade de dias desejada para a previsão do preço do barril de petróleo. Para garantir a precisão das previsões, estabelecemos um limite de {limite_dias} dias a partir de **20 de maio de 2024**, última data do preço do petróleo na nossa base de dados. Isso assegura que as projeções sejam baseadas em dados recentes e relevantes, proporcionando insights confiáveis sobre a tendência de preço no curto prazo.")
+st.info(f"Neste campo, você pode inserir a data desejada para a previsão do preço do barril de petróleo. Para garantir a precisão das previsões, estabelecemos um limite de {LIMITE_DIAS} dias a partir de **{DATA_INICIAL.strftime('%d de %B de %Y')}**, última data do preço do petróleo na nossa base de dados. Isso assegura que as projeções sejam baseadas em dados recentes e relevantes, proporcionando insights confiáveis sobre a tendência de preço no curto prazo.")
 
-days = st.number_input('Insira a quantidade de dias para a previsão do preço do Petróleo:',
-                       min_value=1, max_value=limite_dias, value=limite_dias)
+# Entrada de data pelo usuário
+with st.container():
+    col, _ = st.columns([2, 6])
+    with col:
+        min_date = DATA_INICIAL
+        max_date = DATA_INICIAL + timedelta(days=LIMITE_DIAS)
+        end_date = st.date_input(
+            "**Escolha a data de previsão:**", 
+            min_value=min_date, 
+            max_value=max_date,
+            value=min_date,
+        )
+
+# Calcular o número de dias para a previsão com base na data selecionada
+days = (end_date - DATA_INICIAL).days
 
 sequence_length = 10
 
@@ -93,11 +108,17 @@ if st.button('Prever'):
             fig = go.Figure(data=[trace1, trace2], layout=layout)
             fig.update_yaxes(range=[60, 110])
             st.plotly_chart(fig)
-    
+
             st.subheader(':gray[Previsões para os próximos dias:]', divider='orange')
-            for i, (date, price) in enumerate(zip(forecast_dates, forecast), 1):
-                st.write(f'Dia {i}: {date.strftime("%Y-%m-%d")} - Preço: ${price[0]:.2f}')
-    
+            
+            # Montando a tabela com os resultados da previsão
+            forecast_df = pd.DataFrame({
+                "Data": [date.strftime("%Y-%m-%d") for date in forecast_dates],  
+                "Preço": forecast.flatten().round(2)  
+            })
+
+            st.write(forecast_df.set_index("Data")) 
+
             st.success("Previsão concluída com sucesso! :white_check_mark:")
         
         except FileNotFoundError as fnf_error:

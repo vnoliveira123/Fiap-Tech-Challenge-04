@@ -1,6 +1,7 @@
 import streamlit as st
 from tabs.tab import TabInterface
 
+
 class IntroTab(TabInterface):
     def __init__(self, tab):
         self.tab = tab

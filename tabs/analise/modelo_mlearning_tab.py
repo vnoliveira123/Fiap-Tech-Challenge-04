@@ -1,6 +1,5 @@
 import streamlit as st
 from tabs.tab import TabInterface
-from util.layout import format_number
 
 
 class LSTMTab(TabInterface):
