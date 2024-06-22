@@ -51,7 +51,7 @@ st.info(f"Neste campo, você pode inserir a data desejada para a previsão do pr
 with st.container():
     col, _ = st.columns([2, 6])
     with col:
-        min_date = DATA_INICIAL
+        min_date = DATA_INICIAL + timedelta(days=1)
         max_date = DATA_INICIAL + timedelta(days=LIMITE_DIAS)
         end_date = st.date_input(
             "**Escolha a data de previsão:**", 
