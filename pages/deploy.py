@@ -109,7 +109,7 @@ if st.button('Prever'):
             fig.update_yaxes(range=[60, 110])
             st.plotly_chart(fig)
 
-            st.subheader(':gray[Previsões para os próximos dias:]', divider='orange')
+            st.subheader(':gray[Tabela de Previsões de Preço por Data:]', divider='orange')
             
             # Montando a tabela com os resultados da previsão
             forecast_df = pd.DataFrame({
