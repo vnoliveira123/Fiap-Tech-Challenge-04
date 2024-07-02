@@ -1,5 +1,4 @@
 import streamlit as st
-import plotly.graph_objs as go
 from tabs.intro.introducao_tab import IntroTab
 from tabs.intro.metodologia_tab import MetodologiaTab
 from tabs.intro.objetivo_tab import ObjetivoTab 
