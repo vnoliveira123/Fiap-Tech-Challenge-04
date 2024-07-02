@@ -1,9 +1,5 @@
 import streamlit as st
 from st_pages import show_pages, Page
-import locale
-
-def format_number(number, format='%0.0f'):
-    return locale.format(format, number, grouping=True)
 
 def output_layout():
     show_pages(

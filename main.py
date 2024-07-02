@@ -5,10 +5,9 @@ from tabs.intro.metodologia_tab import MetodologiaTab
 from tabs.intro.objetivo_tab import ObjetivoTab 
 from util.layout import output_layout
 import warnings
-import locale
 
 warnings.filterwarnings("ignore")
-locale.setlocale(locale.LC_ALL, "pt_BR.UTF-8")
+
 output_layout()
 
 with open('assets/css/style.css') as f:
