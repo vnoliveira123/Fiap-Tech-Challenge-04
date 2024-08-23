@@ -45,7 +45,7 @@ DATA_INICIAL = date(2024, 5, 20)
 LIMITE_DIAS = 15
 
 st.header(":orange[Previsão do Preço do Petróleo]", divider='orange')
-st.info(f"Neste campo, você pode inserir a data desejada para a previsão do preço do barril de petróleo. Para garantir a precisão das previsões, estabelecemos um limite de {LIMITE_DIAS} dias a partir de **{DATA_INICIAL.strftime('%d de %B de %Y')}**, última data do preço do petróleo na nossa base de dados. Isso assegura que as projeções sejam baseadas em dados recentes e relevantes, proporcionando insights confiáveis sobre a tendência de preço no curto prazo.")
+st.info(f"Neste campo, você pode inserir a data desejada para a previsão do preço do barril de petróleo. Para garantir a precisão das previsões, estabelecemos um limite de {LIMITE_DIAS} dias a partir de **20 de maio de 2024**, última data do preço do petróleo na nossa base de dados. Isso assegura que as projeções sejam baseadas em dados recentes e relevantes, proporcionando insights confiáveis sobre a tendência de preço no curto prazo.")
 
 # Entrada de data pelo usuário
 with st.container():
