@@ -8,7 +8,7 @@ from model_lstm.model_lstm import predict, predict_dates, load_model_and_scaler,
 from util.layout import output_layout
 
 # Configurações do Streamlit
-st.set_page_config(page_title="Introdução | Tech Challenge 4 | FIAP", layout='wide')
+st.set_page_config(page_title="Deploy | Tech Challenge 4 | FIAP", layout='wide')
 output_layout()
 
 # Definindo o diretório base onde estão localizados os arquivos

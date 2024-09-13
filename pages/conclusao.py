@@ -1,7 +1,7 @@
 import streamlit as st
 from util.layout import output_layout
 
-st.set_page_config(page_title="Introdução | Tech Challenge 4 | FIAP", layout='wide')
+st.set_page_config(page_title="Conclusão | Tech Challenge 4 | FIAP", layout='wide')
 output_layout()
 
 with open('assets/css/style.css') as f:
