@@ -7,6 +7,7 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
+st.set_page_config(page_title="Tech Challenge 4 | Fase 4 | FIAP", layout='wide')
 output_layout()
 
 with open('assets/css/style.css') as f:

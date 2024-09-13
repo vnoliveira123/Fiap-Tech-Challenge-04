@@ -5,7 +5,7 @@ from tabs.analise.power_bi_insights_tab import PowerBIInsightsTab
 from tabs.analise.resultados_tab import ResultadosTab
 from util.layout import output_layout
 
-st.set_page_config(page_title="Análise | Tech Challenge 4 | FIAP", layout='wide')
+st.set_page_config(page_title="Exploração e Insights | Tech Challenge 4 | FIAP", layout='wide')
 output_layout()
 
 with open('assets/css/style.css') as f:
